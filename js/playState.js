@@ -15,19 +15,36 @@ var playState = {
     {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
+        this.cursors = game.input.keyboard.createCursorKeys();
+
         this.ball = game.add.sprite(100, 100, 'ball');
+        this.paddle = game.add.sprite(300, 500, 'paddle');
 
         game.physics.enable(this.ball);
+        game.physics.enable(this.paddle);
 
         this.ball.body.velocity.x = 300;
         this.ball.body.velocity.y = 300;
         this.ball.body.bounce.setTo(1,1);
         this.ball.body.collideWorldBounds = true;
+
+        this.paddle.body.collideWorldBounds = true;
+        this.paddle.body.immovable = true;
     },
 
     update: function()
     {
+        game.physics.arcade.collide(this.ball, this.paddle);
 
+        if(this.cursors.left.isDown)
+        {
+            this.paddle.x -= 10;
+        }
+
+        if(this.cursors.right.isDown)
+        {
+            this.paddle.x += 10;
+        }
     }
 
 };
