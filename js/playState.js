@@ -17,7 +17,7 @@ var playState = {
 
         this.cursors = game.input.keyboard.createCursorKeys();
 
-        this.ball = game.add.sprite(100, 100, 'ball');
+        this.ball = game.add.sprite(150, 300, 'ball');
         this.paddle = game.add.sprite(300, 500, 'paddle');
 
         game.physics.enable(this.ball);
@@ -30,11 +30,14 @@ var playState = {
 
         this.paddle.body.collideWorldBounds = true;
         this.paddle.body.immovable = true;
+
+        this.createBricks();
     },
 
     update: function()
     {
         game.physics.arcade.collide(this.ball, this.paddle);
+        game.physics.arcade.collide(this.ball, this.bricks, this.ballHitsBrick);
 
         if(this.cursors.left.isDown)
         {
@@ -45,6 +48,30 @@ var playState = {
         {
             this.paddle.x += 10;
         }
+    },
+
+    createBricks: function()
+    {
+        this.bricks = game.add.group();
+
+        for(var i = 0; i < 4; i++)
+        {
+            for (var j = 0; j < 10; j++)
+            {
+                var brick = this.bricks.create(j*45, i*40, 'brick'+i);
+
+                game.physics.enable(brick);
+                brick.body.immovable = true;
+            }
+        }
+
+        this.bricks.x = 180;
+        this.bricks.y = 50;
+    },
+
+    ballHitsBrick: function(ball, brick)
+    {
+        brick.kill();
     }
 
 };
