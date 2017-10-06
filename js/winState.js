@@ -4,7 +4,7 @@ var winState = {
     {
         var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        game.add.text(100, 100, 'You won\nScore: '+score+' - click space to restart', {fill: '#fff', fontWeight: '300'});
+        game.add.text(100, 100, 'You won - click space to restart', {fill: '#fff', fontWeight: '300'});
 
         space.onDown.add(this.restartGame);
     },
