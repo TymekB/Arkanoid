@@ -13,7 +13,16 @@ var playState = {
 
     create: function()
     {
+        game.physics.startSystem(Phaser.Physics.ARCADE);
 
+        this.ball = game.add.sprite(100, 100, 'ball');
+
+        game.physics.enable(this.ball);
+
+        this.ball.body.velocity.x = 300;
+        this.ball.body.velocity.y = 300;
+        this.ball.body.bounce.setTo(1,1);
+        this.ball.body.collideWorldBounds = true;
     },
 
     update: function()
