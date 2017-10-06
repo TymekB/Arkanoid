@@ -4,7 +4,7 @@ var menuState = {
     {
         var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        game.add.text(100, 100, 'Arkanoid - click space to start', {fill: '#fff'});
+        game.add.text(100, 100, 'Arkanoid - click space to start', {fill: '#fff', fontWeight: '300'});
 
         space.onDown.add(this.startGame);
     },

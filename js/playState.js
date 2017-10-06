@@ -48,6 +48,11 @@ var playState = {
         {
             this.paddle.x += 10;
         }
+
+        if(this.ball.y > this.paddle.y+80)
+        {
+            game.state.start('lose');
+        }
     },
 
     createBricks: function()
