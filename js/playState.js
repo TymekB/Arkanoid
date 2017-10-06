@@ -1,4 +1,4 @@
-var score = 0;
+var score = 360;
 
 var playState = {
 
@@ -55,6 +55,11 @@ var playState = {
         if(this.ball.y > this.paddle.y+80)
         {
             game.state.start('lose');
+        }
+
+        if(score >= this.bricks.length * 10)
+        {
+            game.state.start('win');
         }
     },
 
