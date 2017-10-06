@@ -1,3 +1,5 @@
+var score = 0;
+
 var playState = {
 
     preload: function()
@@ -16,6 +18,7 @@ var playState = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.cursors = game.input.keyboard.createCursorKeys();
+        this.scoreText = game.add.text(20, 560, 'Score: 0', {fill: '#fff', fontWeight: '300', fontSize: '20px'});
 
         this.ball = game.add.sprite(150, 300, 'ball');
         this.paddle = game.add.sprite(300, 500, 'paddle');
@@ -37,16 +40,16 @@ var playState = {
     update: function()
     {
         game.physics.arcade.collide(this.ball, this.paddle);
-        game.physics.arcade.collide(this.ball, this.bricks, this.ballHitsBrick);
+        game.physics.arcade.collide(this.ball, this.bricks, this.ballHitsBrick, this.shouldCollide, this);
 
         if(this.cursors.left.isDown)
         {
-            this.paddle.x -= 10;
+            this.paddle.x -= 8;
         }
 
         if(this.cursors.right.isDown)
         {
-            this.paddle.x += 10;
+            this.paddle.x += 8;
         }
 
         if(this.ball.y > this.paddle.y+80)
@@ -77,6 +80,14 @@ var playState = {
     ballHitsBrick: function(ball, brick)
     {
         brick.kill();
+        score += 10;
+
+        this.scoreText.setText("Score: "+score);
+    },
+
+    shouldCollide: function()
+    {
+        return true;
     }
 
 };
