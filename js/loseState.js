@@ -11,6 +11,7 @@ var loseState = {
 
     restartGame: function()
     {
+        score = 0;
         game.state.start('play');
     }
 

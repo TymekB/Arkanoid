@@ -1,4 +1,4 @@
-var score = 360;
+var score = 0;
 
 var playState = {
 
