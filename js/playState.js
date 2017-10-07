@@ -11,6 +11,7 @@ var playState = {
         game.load.image('brick2', 'assets/brick2.png');
         game.load.image('brick3', 'assets/brick3.png');
         game.load.image('brick4', 'assets/brick4.png');
+        game.load.audio('collision', 'assets/collision.mp3');
     },
 
     create: function()
@@ -86,6 +87,7 @@ var playState = {
     {
         brick.kill();
         score += 10;
+        game.sound.play('collision');
 
         this.scoreText.setText("Score: "+score);
     },
